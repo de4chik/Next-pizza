@@ -8,6 +8,7 @@ datasource db {
   provider = "postgresql"
 }
 
+// category model
 model category {
   id        String   @id @unique @default(uuid())
   // 
@@ -18,6 +19,7 @@ model category {
   pizzas    pizza[]
 }
 
+// pizza model
 model pizza {
   id          String   @id @unique @default(uuid())
   // 
@@ -33,6 +35,7 @@ model pizza {
   updatedAt   DateTime @updatedAt @map("updated_at")
 }
 
+// ingredients model
 model ingredients {
   id        String   @id @unique @default(uuid())
   // 
@@ -42,4 +45,37 @@ model ingredients {
   // 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+// user model
+model user {
+  id        String   @id @unique @default(uuid())
+  // 
+  name      String
+  address   address? @relation(fields: [addressId], references: [id])
+  addressId String?
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  // 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model address {
+  id         String @id @unique @default(uuid())
+  // 
+  street     String
+  city       String
+  homeNumber String @map("home_number")
+  users      user[]
+
+  // 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+enum Role {
+  USER
+  ADMIN
 }
