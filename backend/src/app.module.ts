@@ -5,9 +5,18 @@ import { IngredientModule } from './ingredient/ingredient.module';
 import { PizzaModule } from './pizza/pizza.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { TokenModule } from './token/token.module';
 
 @Module({
-  imports: [PrismaModule, CategoryModule, IngredientModule, PizzaModule, UserModule, AuthModule],
+  imports: [
+    PrismaModule,
+    CategoryModule,
+    IngredientModule,
+    PizzaModule,
+    UserModule,
+    AuthModule,
+    TokenModule,
+  ],
   controllers: [],
   providers: [],
 })

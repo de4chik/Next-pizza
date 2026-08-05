@@ -62,6 +62,8 @@ model user {
   updatedAt DateTime @updatedAt @map("updated_at")
 }
 
+
+
 model address {
   id         String @id @unique @default(uuid())
   // 
